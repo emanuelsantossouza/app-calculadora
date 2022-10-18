@@ -8,8 +8,8 @@
  
 <ion-content [fullscreen]="true"  color="dark">
  <ion-item color="dark">
-   <ion-label>Operação:</ion-label>
-   <ion-input type="number"></ion-input>
+   <ion-label >Operação:</ion-label>
+   <ion-input [(ngModel)]="Operação" type="number"></ion-input>
  </ion-item>
 
  <ion-item color="dark">
@@ -66,7 +66,7 @@
     </ion-col> 
 
     <ion-col siza="3">
-      <ion-button (click)="mult()"  size="small" fill="outline">2√x</ion-button>
+      <ion-button (click)=""  size="small" fill="outline">2√x</ion-button>
     </ion-col> 
     <ion-col siza="3">
       <ion-button fill="outline">÷</ion-button>
@@ -82,7 +82,7 @@
       <ion-button>9</ion-button>
     </ion-col> 
     <ion-col siza="3">
-      <ion-button fill="outline" >X</ion-button>
+      <ion-button fill="outline">X</ion-button>
     </ion-col> 
     <ion-col siza="3">
       <ion-button>4</ion-button>
@@ -120,7 +120,7 @@
     </ion-col> 
    
     <ion-col>
-      <ion-button size="small" fill="outline">=</ion-button>
+      <ion-button (click)="calcularOperaca()" size="small" fill="outline">=</ion-button>
     </ion-col> 
   </ion-row>
 </ion-card>
