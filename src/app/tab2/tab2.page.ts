@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { evaluate, sqrt } from 'mathjs';
+import { IMmemoria } from '../models/IMemoria.models';
 
 @Component({
   selector: 'app-tab2',
@@ -13,10 +14,64 @@ export class Tab2Page {
   caracter = true;
   caracteres = ['.', '/', '*', '-']; //controle 
 
+  memoria:IMmemoria[] = [];
+
   constructor() {}
 
   ngOnInit() {}
 
+  adicionarMemoria(){
+    if (this.operacao != '' && this.resultado != ''){
+      const memoria: IMmemoria = {
+        operacao: this.operacao,
+        resultado: Number(this.resultado),
+      };
+
+      this.memoria.push(memoria);
+      
+    }else if(this.operacao != '' && this.resultado == ''){
+      this.calcularOperaca();
+    }else{
+    }
+
+    console.log(this.memoria)
+  }
+
+  SomarMemoria(){
+    if (this.operacao != '' && this.resultado != ''){
+      const memoria: IMmemoria = {
+        operacao: this.operacao,
+        resultado: Number(this.resultado),
+      };
+
+      this.memoria.push(memoria);
+      
+    }else if(this.operacao != '' && this.resultado == ''){
+      this.calcularOperaca();
+    }else{
+    }
+
+    console.log(this.memoria)
+  }
+
+  LimparMemoria(){
+    if (this.operacao != '' && this.resultado != ''){
+      const memoria: IMmemoria = {
+        operacao: this.operacao,
+        resultado: Number(this.resultado),
+      };
+
+      this.memoria.push(memoria);
+      
+    }else if(this.operacao != '' && this.resultado == ''){
+      this.calcularOperaca();
+    }else{
+    }
+
+    console.log(this.memoria)
+  }
+
+  
   calcularOperaca(){
       try{ //trara erro
         this.resultado = evaluate(this.operacao);
