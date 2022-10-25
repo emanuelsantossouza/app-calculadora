@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { evaluate, sqrt } from 'mathjs';
 import { IMmemoria } from '../models/IMemoria.models';
 
+import { ModalController } from '@ionic/angular';
+import { MemoriaModalPage } from '../utils/memoria-modal/memoria-modal.page';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -16,9 +19,54 @@ export class Tab2Page {
 
   memoria:IMmemoria[] = [];
 
-  constructor() {}
+  constructor(private modalCtrl: ModalController) {} 
 
   ngOnInit() {}
+
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: MemoriaModalPage,
+      componentProps: {
+        memoria:this.memoria,
+      }
+    });
+    modal.present();
+
+  }
+
+  maisMemoria(){
+    if (this.operacao != '') {
+    this.calcularOperacao();   
+    const memoria = this.memoria[this.memoria,length -1];
+    const novaMemoria: IMmemoria = {
+      operacao: `${this.resultado} + ${memoria.resultado}`,
+      resultado: Number(this.resultado) + memoria.resultado,
+    };
+    this.memoria.push(novaMemoria);
+    console.log('Adicionou:', this.memoria);
+   }
+  }  
+  
+    menosMemoria() {
+        const memoria = this.memoria[this.memoria,length -1];
+        const novaMemoria: IMmemoria = {
+          operacao: `${this.resultado} + ${memoria.resultado}`,
+          resultado: Number(this.resultado) - memoria.resultado,
+        };
+        this.memoria.push(novaMemoria);
+        console.log('Adicionou:', this.memoria);
+    }
+
+  limparCampo() {
+    this.memoria = [];
+  }
+
+  showMemoria(){
+    const memoria = this.memoria[this.memoria.length - 1];
+    this.operacao = memoria.operacao;
+    this.resultado = memoria.resultado.toString();
+  }
 
   adicionarMemoria(){
     if (this.operacao != '' && this.resultado != ''){
@@ -30,7 +78,7 @@ export class Tab2Page {
       this.memoria.push(memoria);
       
     }else if(this.operacao != '' && this.resultado == ''){
-      this.calcularOperaca();
+      this.calcularOperacao();
     }else{
     }
 
@@ -47,7 +95,7 @@ export class Tab2Page {
       this.memoria.push(memoria);
       
     }else if(this.operacao != '' && this.resultado == ''){
-      this.calcularOperaca();
+      this.calcularOperacao();
     }else{
     }
 
@@ -64,7 +112,7 @@ export class Tab2Page {
       this.memoria.push(memoria);
       
     }else if(this.operacao != '' && this.resultado == ''){
-      this.calcularOperaca();
+      this.calcularOperacao();
     }else{
     }
 
@@ -72,7 +120,7 @@ export class Tab2Page {
   }
 
   
-  calcularOperaca(){
+  calcularOperacao(){
       try{ //trara erro
         this.resultado = evaluate(this.operacao);
       } catch (err) {

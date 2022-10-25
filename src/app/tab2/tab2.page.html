@@ -1,8 +1,182 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="dark">
-    <ion-title>
-      Calculadora 
-    </ion-title>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calculadora 2</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true" color="dark">
+  <div class="center">
+    <ion-card>
+      <ion-item lines="full">
+        <ion-label position="stacked">Operação:</ion-label>
+        <ion-input class="ion-text-right" [(ngModel)]="operacao"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label slot="start"><strong>Resultado: </strong></ion-label>
+        <ion-label class="ion-text-right resultado">{{resultado}}</ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-row>
+        <ion-col size="2">
+          <ion-button (click)="limparCampo()" color="medium" expand="block">MC</ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="showMemoria()" color="medium" expand="block">MR</ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="maisMemoria()" color="medium" expand="block">M+</ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="menosMemoria()" color="medium" expand="block">M-</ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="adicionarMemoria()" color="medium" expand="block">MS</ion-button>
+        </ion-col>
+        <ion-col size="2">
+          <ion-button (click)="openModal()" color="medium" expand="block">M</ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="medium" expand="block">%</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="limparOperacao()" color="medium" expand="block"
+            >CE</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="limparMemoria()" color="medium" expand="block"
+            >C</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="apagarCaracter()" color="medium" expand="block">
+            <ion-icon slot="icon-only" name="backspace-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="medium" expand="block">1/x</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="medium" expand="block">x²</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button color="medium" expand="block">R</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button
+            (click)="adicionarValor('/')"
+            color="medium"
+            expand="block"
+            >/</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="adicionarValor('7')" color="light" expand="block"
+            >7</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('8')" color="light" expand="block"
+            >8</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('9')" color="light" expand="block"
+            >9</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button
+            (click)="adicionarValor('*')"
+            color="medium"
+            expand="block"
+            >X</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="adicionarValor('4')" color="light" expand="block"
+            >4</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('5')" color="light" expand="block"
+            >5</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('6')" color="light" expand="block"
+            >6</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button
+            (click)="adicionarValor('-')"
+            color="medium"
+            expand="block"
+            >-</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button (click)="adicionarValor('1')" color="light" expand="block"
+            >1</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('2')" color="light" expand="block"
+            >2</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('3')" color="light" expand="block"
+            >3</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button
+            (click)="adicionarValor('+')"
+            color="medium"
+            expand="block"
+            >+</ion-button
+          >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button color="medium" expand="block">+/-</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="adicionarValor('0')" color="light" expand="block"
+            >0</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button
+            (click)="adicionarValor('.')"
+            color="medium"
+            expand="block"
+            >,</ion-button
+          >
+        </ion-col>
+        <ion-col>
+          <ion-button
+            color="secondary"
+            (click)="calcularOperacao()"
+            expand="block"
+            >=</ion-button
+          >
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>
